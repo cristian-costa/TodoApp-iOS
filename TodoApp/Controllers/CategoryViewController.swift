@@ -40,7 +40,7 @@ class CategoryViewController: SwipeTableViewController {
     @IBAction func addButtonPressed(_ sender: UIBarButtonItem) {
         var textField = UITextField()
         
-        let alert = UIAlertController(title: "Add New Todoey Category", message: "", preferredStyle: .alert)
+        let alert = UIAlertController(title: "Add New Category", message: "", preferredStyle: .alert)
         
         let action = UIAlertAction(title: "Add Category", style: .default) { action in
             //what will happen once the user clicks the Add Item Button
@@ -74,11 +74,12 @@ class CategoryViewController: SwipeTableViewController {
             guard let categoryColour = UIColor(hexString: category.color) else {fatalError()}
             
             cell.textLabel?.text = category.name
-            cell.backgroundColor = categoryColour
-            
-            cell.textLabel?.textColor = ContrastColorOf(categoryColour, returnFlat: true)
+//            cell.backgroundColor = categoryColour
+//            cell.textLabel?.textColor = ContrastColorOf(categoryColour, returnFlat: true)
+            let image = UIImage(systemName: "folder.fill")
+            cell.imageView?.tintColor = categoryColour
+            cell.imageView?.image = image
         }
-        
         return cell
         
     }

@@ -55,10 +55,17 @@ class ToDoListViewController: SwipeTableViewController {
         let cell = super.tableView(tableView, cellForRowAt: indexPath)
         if let item = todoItems?[indexPath.row] {
             cell.textLabel?.text = item.title
-            if let color = UIColor(hexString: selectedCategory!.color)?.darken(byPercentage: CGFloat(indexPath.row) / CGFloat(todoItems!.count)) {
-                cell.backgroundColor = color
-                cell.textLabel?.textColor = ContrastColorOf(color, returnFlat: true)
-            }
+//            if let color = UIColor(hexString: selectedCategory!.color)?.darken(byPercentage: CGFloat(indexPath.row) / CGFloat(todoItems!.count)) {
+//                cell.backgroundColor = color
+//                cell.textLabel?.textColor = ContrastColorOf(color, returnFlat: true)
+//                let image = UIImage(systemName: "circle.fill")
+//                cell.imageView?.tintColor = UIColor(hexString: selectedCategory!.color)
+//                cell.imageView?.image = image
+//            }
+            let image = UIImage(systemName: "circle.fill")
+            cell.imageView?.tintColor = UIColor(hexString: selectedCategory!.color)
+            cell.imageView?.image = image
+            
             //activate or desactivate checkMark, ternary condition
             cell.accessoryType = item.done ? .checkmark : .none
         } else {
@@ -88,7 +95,7 @@ class ToDoListViewController: SwipeTableViewController {
         
         var textField = UITextField()
         
-        let alert = UIAlertController(title: "Add New Todoey Item", message: "", preferredStyle: .alert)
+        let alert = UIAlertController(title: "Add New Item", message: "", preferredStyle: .alert)
         
         let action = UIAlertAction(title: "Add Item", style: .default) { action in
             //what will happen once the user clicks the Add Item Button
