@@ -10,7 +10,6 @@ import RealmSwift
 import ChameleonFramework
 
 class CategoryViewController: SwipeTableViewController {
-    
     //Inicializamos access point realm database
     let realm = try! Realm()
 
@@ -26,7 +25,7 @@ class CategoryViewController: SwipeTableViewController {
     
     override func viewWillAppear(_ animated: Bool) {
         guard let navBar = navigationController?.navigationBar else {fatalError("Navbar doesnt exist")}
-        let navBarColor = UIColor(hexString: "1D9BF6")
+        let navBarColor = UIColor(hexString: "63B4B8")
         let contrastColor = ContrastColorOf(navBarColor!, returnFlat: true)
         // first line will color the notch in iPhone X and later
         navBar.subviews[0].backgroundColor = navBarColor
@@ -39,7 +38,7 @@ class CategoryViewController: SwipeTableViewController {
     //MARK: - Add Button
     @IBAction func addButtonPressed(_ sender: UIBarButtonItem) {
         var textField = UITextField()
-        
+
         let alert = UIAlertController(title: "Add New Category", message: "", preferredStyle: .alert)
         
         let action = UIAlertAction(title: "Add Category", style: .default) { action in
@@ -51,15 +50,22 @@ class CategoryViewController: SwipeTableViewController {
             self.tableView.reloadData()
         }
         
+        let cancel = UIAlertAction(title: "Cancel", style: .default) { action in
+            return
+        }
+
         alert.addTextField { alertTextField in
             alertTextField.placeholder = "Create New Category"
             textField = alertTextField
         }
-        
+
         alert.addAction(action)
+        alert.addAction(cancel)
 
         present(alert, animated: true, completion: nil)
     }
+
+    
     
     //MARK: - TableView DataSource Methods
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {

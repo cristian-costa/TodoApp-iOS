@@ -25,6 +25,8 @@ class ToDoListViewController: SwipeTableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         tableView.separatorStyle = .none
+//        tableView.separatorStyle = .singleLine
+//        tableView.separatorColor = UIColor(hexString: selectedCategory!.color)
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -55,6 +57,9 @@ class ToDoListViewController: SwipeTableViewController {
         let cell = super.tableView(tableView, cellForRowAt: indexPath)
         if let item = todoItems?[indexPath.row] {
             cell.textLabel?.text = item.title
+            let dateFormatter = DateFormatter()
+            dateFormatter.dateFormat = "d MMM YYYY, HH:mm:ss"
+            cell.detailTextLabel?.text = dateFormatter.string(from: item.dateCreated!)
 //            if let color = UIColor(hexString: selectedCategory!.color)?.darken(byPercentage: CGFloat(indexPath.row) / CGFloat(todoItems!.count)) {
 //                cell.backgroundColor = color
 //                cell.textLabel?.textColor = ContrastColorOf(color, returnFlat: true)
@@ -126,7 +131,7 @@ class ToDoListViewController: SwipeTableViewController {
     
     //MARK: - Model Manipulation Methods
     func loadItems() {
-        todoItems = selectedCategory?.items.sorted(byKeyPath: "title", ascending: true)
+        todoItems = selectedCategory?.items.sorted(byKeyPath: "dateCreated", ascending: true)
         tableView.reloadData()
     }
     

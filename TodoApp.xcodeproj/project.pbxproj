@@ -80,9 +80,9 @@
 		40E583DC26F567180067202E /* TodoApp */ = {
 			isa = PBXGroup;
 			children = (
-				40E583F926F5683B0067202E /* Data Model */,
 				40E583DD26F567180067202E /* AppDelegate.swift */,
 				40E583DF26F567180067202E /* SceneDelegate.swift */,
+				40E583F926F5683B0067202E /* Data Model */,
 				40E583F126F567A10067202E /* Controllers */,
 				40E583F226F567A80067202E /* Views */,
 				40E583E626F5671B0067202E /* Assets.xcassets */,
